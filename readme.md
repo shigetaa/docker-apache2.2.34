@@ -130,6 +130,7 @@ RUN set -x \
   ' \
   && apk add --no-cache --virtual .build-deps \
     $runDeps \
+    tzdata \
     ncurses-dev \
     ca-certificates \
     coreutils \
@@ -151,6 +152,8 @@ RUN set -x \
     tar \
     # mod_deflate
     zlib-dev \
+  \
+  && cp /usr/share/zoneinfo/Japan /etc/localtime \
   \
   && wget -O httpd-$HTTPD_VERSION.tar.gz https://archive.apache.org/dist/httpd/httpd-$HTTPD_VERSION.tar.gz \
   && mkdir -p src \
